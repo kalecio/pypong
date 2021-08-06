@@ -30,8 +30,36 @@ ball = turtle.Turtle()
 ball.speed(0)
 ball.shape("square")
 ball.color("white")
-player_b.goto(0, 0)
+ball.goto(0, 0)
 ball.penup()
+
+# Function
+def player_a_up():
+    y = player_a.ycor()
+    y += 20
+    player_a.sety(y)
+
+def player_a_down():
+    y = player_a.ycor()
+    y -= 20
+    player_a.sety(y)
+
+def player_b_up():
+    y = player_b.ycor()
+    y += 20
+    player_b.sety(y)
+
+def player_b_down():
+    y = player_b.ycor()
+    y -= 20
+    player_b.sety(y)
+
+# Keyboard binding
+wn.listen()
+wn.onkeypress(player_a_up, "w")
+wn.onkeypress(player_a_down, "s")
+wn.onkeypress(player_b_up, "i")
+wn.onkeypress(player_b_down, "k")
 
 # Main game loop
 
