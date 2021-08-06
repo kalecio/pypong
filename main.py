@@ -32,6 +32,8 @@ ball.shape("square")
 ball.color("white")
 ball.goto(0, 0)
 ball.penup()
+ball.dx = 0.05
+ball.dy = 0.05
 
 # Function
 def player_a_up():
@@ -58,11 +60,31 @@ def player_b_down():
 wn.listen()
 wn.onkeypress(player_a_up, "w")
 wn.onkeypress(player_a_down, "s")
-wn.onkeypress(player_b_up, "i")
-wn.onkeypress(player_b_down, "k")
+wn.onkeypress(player_b_up, "Up")
+wn.onkeypress(player_b_down, "Down")
 
 # Main game loop
 
 while True:
     wn.update()
     
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Border checking
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+    
+    if ball.xcor() < -390:
+        ball.goto(0, 0)
+        ball.dx *= -1
