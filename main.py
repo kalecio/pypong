@@ -6,6 +6,10 @@ wn.bgcolor("black")
 wn.setup(width=800, height=600)
 wn.tracer(0)
 
+# Score
+score_a = 0
+score_b = 0
+
 # Player A
 player_a = turtle.Turtle()
 player_a.speed(0)
@@ -34,6 +38,15 @@ ball.goto(0, 0)
 ball.penup()
 ball.dx = 0.05
 ball.dy = 0.05
+
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write(f"Player A: {score_a}               Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
 
 # Function
 def player_a_up():
@@ -84,10 +97,16 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *= -1
+        score_a += 1
+        pen.clear()
+        pen.write(f"Player A: {score_a}               Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
     
     if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
+        score_b += 1
+        pen.clear()
+        pen.write(f"Player A: {score_a}               Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
 
     # Player and ball collisions
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < player_b.ycor() + 50 and ball.ycor() > player_b.ycor() - 50):
